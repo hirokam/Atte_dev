@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\RegisteredUserController;
+use App\Http\controllers\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,5 @@ use App\Http\controllers\RegisteredUserController;
 */
 
 Route::get('/register', [RegisteredUserController::class, 'create']);
+
+Route::get('/login', [AuthenticatedSessionController::class, 'store']);

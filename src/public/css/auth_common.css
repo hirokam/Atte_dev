@@ -1,0 +1,49 @@
+.content {
+    text-align: center;
+}
+
+.content__title {
+    font-size: 25px;
+    margin: 0 0;
+    padding-top: 60px;
+    font-weight: bold;
+}
+
+.content__inner-item {
+    margin: 25px 0;
+}
+
+.content__inner-item input {
+    height: 45px;
+    width: 400px;
+    background: none;
+    border: solid 2px #a9a9a9;
+    border-radius: 5px;
+    padding-left: 20px;
+    color: #808080;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.content__inner-button button {
+    height: 45px;
+    width: 400px;
+    background: #0000ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.guide {
+    color: #a9a9a9;
+    margin: 25px 0 0;
+    font-size: 13px;
+}
+
+.login,
+.register {
+    text-decoration: none;
+    color: #0000ff;
+    font-size: 13px;
+}
