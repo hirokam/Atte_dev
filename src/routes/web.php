@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\RegisteredUserController;
 use App\Http\controllers\AuthenticatedSessionController;
+use App\Http\controllers\ClockInController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,5 @@ use App\Http\controllers\AuthenticatedSessionController;
 Route::get('/register', [RegisteredUserController::class, 'create']);
 
 Route::get('/login', [AuthenticatedSessionController::class, 'store']);
+
+Route::get('/', [ClockInController::class, 'store']);
