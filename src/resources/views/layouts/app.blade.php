@@ -18,9 +18,9 @@
 <body>
     <header class="header">
         <div class="header-content__left">
-            <a href="" class="header__title">
+            <p class="header__title">
                 Atte
-            </a>
+            </p>
         </div>
         @yield('header')
     </header>

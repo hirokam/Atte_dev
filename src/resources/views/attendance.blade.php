@@ -17,3 +17,56 @@
     </div>
 @endsection
 
+@section('main')
+    <div class="content">
+        <div class="content-inner__pagenation">
+
+        </div>
+        <div class="content-inner__data">
+            <table>
+                <tr>
+                    <th>名前</th>
+                    <th>勤務開始</th>
+                    <th>勤務終了</th>
+                    <th>休憩時間</th>
+                    <th>勤務時間</th>
+                </tr>
+                <tr>
+                    <td>テスト太郎</td>
+                    <td>10:00:00</td>
+                    <td>20:00:00</td>
+                    <td>00:30:00</td>
+                    <td>09:30:00</td>
+                </tr>
+                <tr>
+                    <td>テスト太郎</td>
+                    <td>10:00:00</td>
+                    <td>20:00:00</td>
+                    <td>00:30:00</td>
+                    <td>09:30:00</td>
+                </tr>
+                <tr>
+                    <td>テスト太郎</td>
+                    <td>10:00:00</td>
+                    <td>20:00:00</td>
+                    <td>00:30:00</td>
+                    <td>09:30:00</td>
+                </tr>
+                <tr>
+                    <td>テスト太郎</td>
+                    <td>10:00:00</td>
+                    <td>20:00:00</td>
+                    <td>00:30:00</td>
+                    <td>09:30:00</td>
+                </tr>
+                <tr>
+                    <td>テスト太郎</td>
+                    <td>10:00:00</td>
+                    <td>20:00:00</td>
+                    <td>00:30:00</td>
+                    <td>09:30:00</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+@endsection
