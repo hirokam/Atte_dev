@@ -18,9 +18,11 @@ use App\Http\controllers\AttendanceController;
 */
 
 Route::get('/register', [RegisteredUserController::class, 'create']);
+Route::post('/register', [RegisteredUserController::class, 'store']);
 
 Route::get('/login', [AuthenticatedSessionController::class, 'store']);
 
-Route::get('/', [ClockInController::class, 'store']);
+Route::get('/', [ClockInController::class, 'home']);
+Route::post('/', [ClockInController::class, 'attendance']);
 
 Route::get('/attendance', [AttendanceController::class, 'get']);

@@ -21,14 +21,15 @@
     <div class="content">
         <p class="content__title">◯◯さんお疲れ様です！</p>
         <div class="content__inner">
-            <form action="" class="content__inner-items">
+            <form action="/" method="post" class="content__inner-items">
+                @csrf
                 <div class="content__inner-items-upper">
-                    <button class="content__inner-item">勤務開始</button>
-                    <button class="content__inner-item">勤務終了</button>
+                    <button name="work_start_time" class="content__inner-item">勤務開始</button>
+                    <button disabled name="work_end_time" class="content__inner-item">勤務終了</button>
                 </div>
                 <div class="content__inner-items-lower">
-                    <button class="content__inner-item">休憩開始</button>
-                    <button class="content__inner-item">休憩終了</button>
+                    <button disabled name="break_start_time" class="content__inner-item">休憩開始</button>
+                    <button disabled name="break_end_time" class="content__inner-item">休憩終了</button>
                 </div>
             </form>
         </div>

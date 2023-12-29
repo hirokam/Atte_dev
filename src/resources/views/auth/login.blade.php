@@ -23,7 +23,7 @@
             </form>
             <div class="content__inner-guide">
                 <p class="guide">アカウントをお持ちでない方はこちらから</p>
-                <a href="" class="register">会員登録</a>
+                <a href="/register" class="register">会員登録</a>
             </div>
         </div>
     </div>

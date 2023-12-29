@@ -8,7 +8,8 @@
     <div class="content">
         <p class="content__title">会員登録</p>
         <div class="content__inner">
-            <form action="" class="register-form">
+            <form action="/register" method="post" class="register-form">
+                @csrf
                 <div class="content__inner-items">
                     <p class="content__inner-item">
                         <input type="text" name="name" placeholder="名前">
@@ -29,7 +30,7 @@
             </form>
             <div class="content__inner-guide">
                 <p class="guide">アカウントをお持ちの方はこちらから</p>
-                <a href="" class="login">ログイン</a>
+                <a href="/login" class="login">ログイン</a>
             </div>
         </div>
     </div>
