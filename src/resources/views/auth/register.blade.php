@@ -12,16 +12,16 @@
                 @csrf
                 <div class="content__inner-items">
                     <p class="content__inner-item">
-                        <input type="text" name="name" placeholder="名前">
+                        <input type="text" name="name" placeholder="名前" value="{{ old('name') }}">
                     </p>
                     <p class="content__inner-item">
-                        <input type="email" name="email" placeholder="メールアドレス">
+                        <input type="email" name="email" placeholder="メールアドレス" value="{{ old('email') }}">
                     </p>
                     <p class="content__inner-item">
-                        <input type="text" name="password" placeholder="パスワード">
+                        <input type="password" name="password" placeholder="パスワード">
                     </p>
                     <p class="content__inner-item">
-                        <input type="text" name="confirm-password" placeholder="確認用パスワード">
+                        <input type="password" name="password_confirmation" placeholder="確認用パスワード">
                     </p>
                 </div>
                 <div class="content__inner-button">

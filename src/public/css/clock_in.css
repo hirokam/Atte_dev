@@ -13,6 +13,12 @@
     margin-top: 60px;
 }
 
+.content__inner-items-upper,
+.content__inner-items-lower {
+    display: flex;
+    justify-content: center;
+}
+
 .content__inner-item {
     border: none;
     width: 350px;

@@ -10,4 +10,9 @@ class AuthenticatedSessionController extends Controller
     {
         return view('auth.login');
     }
+
+    public function destroy()
+    {
+        return redirect('auth.login');
+    }
 }

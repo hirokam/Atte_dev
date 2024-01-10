@@ -8,13 +8,14 @@
     <div class="content">
         <p class="content__title">ログイン</p>
         <div class="content__inner">
-            <form action="" class="login-form">
+            <form action="/login" method="post" class="login-form">
+                @csrf
                 <div class="content__inner-items">
                     <p class="content__inner-item">
-                        <input type="email" name="email" placeholder="メールアドレス" class="">
+                        <input type="email" name="email" placeholder="メールアドレス" value="{{ old('email') }}">
                     </p>
                     <p class="content__inner-item">
-                        <input type="text" name="password" placeholder="パスワード" class="">
+                        <input type="password" name="password" placeholder="パスワード">
                     </p>
                 </div>
                 <div class="content__inner-button">
