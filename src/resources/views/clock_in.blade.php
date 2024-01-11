@@ -12,7 +12,7 @@
                 @if (Auth::check())
                 <li><a href="" class="header__nav-inner-item">ホーム</a></li>
                 <li><a href="" class="header__nav-inner-item">日付一覧</a></li>
-                <li><form action="/logout" method="post" class="">
+                <li><form action="/logout" method="post">
                     @csrf
                     <button class="header__nav-inner-item">ログアウト</button></form>
                 </li>
