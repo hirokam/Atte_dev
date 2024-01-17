@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\controllers\RegisteredUserController;
-use App\Http\controllers\AuthenticatedSessionController;
-use App\Http\controllers\ClockInController;
+use App\Http\controllers\AuthController;
 use App\Http\controllers\AttendanceController;
 
 /*
@@ -17,10 +15,9 @@ use App\Http\controllers\AttendanceController;
 |
 */
 
-Route::get('/register', [RegisteredUserController::class, 'create']);
+Route::middleware('auth')->group(function () {
+    Route::get('/', [AuthController::class, 'home']);
+});
 
-Route::get('/login', [AuthenticatedSessionController::class, 'store']);
-
-Route::get('/', [ClockInController::class, 'store']);
-
-Route::get('/attendance', [AttendanceController::class, 'get']);
+Route::post('/', [AttendanceController::class, 'store']);
+Route::patch('/', [AttendanceController::class, 'update']);

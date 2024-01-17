@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ClockInController extends Controller
+class AuthController extends Controller
 {
-    public function store()
+    public function home()
     {
         return view('clock_in');
     }
+
 }
