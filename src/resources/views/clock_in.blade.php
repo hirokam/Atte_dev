@@ -29,11 +29,13 @@
             <div class="content__inner-items-upper">
                 <form action="/" method="post" class="content__inner-items">
                 @csrf
+                    <input hidden type="text" name="user_id" value="{{ Auth::user()->id }}">
                     <button type="submit" name="work_start_time" class="content__inner-item">勤務開始</button>
                 </form>
                 <form action="/" method="post" class="content__inner-items">
                 @method('PATCH')
                 @csrf
+                    <input hidden type="text" name="user_id" value="{{ Auth::user()->id }}">
                     <button type="submit" name="work_end_time" class="content__inner-item">勤務終了</button>
                 </form>
             </div>

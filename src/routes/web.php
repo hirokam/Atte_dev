@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\AuthController;
+use App\Http\controllers\AttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,6 @@ use App\Http\controllers\AuthController;
 Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class, 'home']);
 });
+
+Route::post('/', [AttendanceController::class, 'store']);
+Route::patch('/', [AttendanceController::class, 'update']);
