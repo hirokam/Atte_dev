@@ -20,4 +20,32 @@ class Attendance extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getUserName()
+    {
+        return $this->user->name;
+    }
+
+    public function breaktimes()
+    {
+        return $this->hasMany(Breaktime::class);
+    }
+
+    public function getTotalBreakDuration()
+    {
+        return $this->breaktimes->sum(function ($breaktime) {
+            return $breaktime->calculateBreakDuration();
+        });
+    }
+
+    public function getTotalAttendanceDuration()
+    {
+        $workStartTime = \Carbon\Carbon::parse($this->work_start_time);
+        $workEndTime = \Carbon\Carbon::parse($this->work_end_time);
+
+        $attendanceDuration = $workEndTime->diffInMinutes($workStartTime);
+        $attendanceDuration -= $this->getTotalBreakDuration();
+
+        return $attendanceDuration;
+    }
 }

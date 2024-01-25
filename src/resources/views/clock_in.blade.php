@@ -10,8 +10,8 @@
         <nav class="header__nav">
             <ul class="header__nav-inner-items">
                 @if (Auth::check())
-                <li><a href="" class="header__nav-inner-item">ホーム</a></li>
-                <li><a href="" class="header__nav-inner-item">日付一覧</a></li>
+                <li><a href="/" class="header__nav-inner-item">ホーム</a></li>
+                <li><a href="/attendance" class="header__nav-inner-item">日付一覧</a></li>
                 <li><form action="/logout" method="post">
                     @csrf
                     <button class="header__nav-inner-item">ログアウト</button></form>
@@ -40,12 +40,15 @@
                 </form>
             </div>
             <div class="content__inner-items-lower">
-                <form action="/" method="post" class="content__inner-items">
+                <form action="/break" method="post" class="content__inner-items">
                 @csrf
+                    <input hidden type="text" name="user_id" value="{{ Auth::user()->id }}">
                     <button type="submit" name="break_start_time" class="content__inner-item">休憩開始</button>
                 </form>
-                <form action="/" method="post" class="content__inner-items">
+                <form action="/break" method="post" class="content__inner-items">
+                @method('PATCH')
                 @csrf
+                    <input hidden type="text" name="user_id" value="{{ Auth::user()->id }}">
                     <button type="submit" name="break_end_time" class="content__inner-item">休憩終了</button>
                 </form>
             </div>

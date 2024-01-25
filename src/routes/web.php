@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\AuthController;
 use App\Http\controllers\AttendanceController;
+use App\Http\controllers\BreaktimeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +20,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class, 'home']);
 });
 
+Route::get('/attendance', [AttendanceController::class, 'index']);
+
 Route::post('/', [AttendanceController::class, 'store']);
 Route::patch('/', [AttendanceController::class, 'update']);
+
+Route::post('/break', [BreaktimeController::class, 'store']);
+Route::patch('/break', [BreaktimeController::class, 'update']);
