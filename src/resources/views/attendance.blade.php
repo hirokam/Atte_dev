@@ -9,9 +9,9 @@
     <div class="header-content__right">
         <nav class="header__nav">
             <ul class="header__nav-inner-items">
-                <li><a href="" class="header__nav-inner-item">ホーム</a></li>
+                <li><a href="/" class="header__nav-inner-item">ホーム</a></li>
                 <li><a href="" class="header__nav-inner-item">日付一覧</a></li>
-                <li><a href="" class="header__nav-inner-item">ログアウト</a></li>
+                <li><a href="/logout" class="header__nav-inner-item">ログアウト</a></li>
             </ul>
         </nav>
     </div>
@@ -31,13 +31,13 @@
                     <th>休憩時間</th>
                     <th>勤務時間</th>
                 </tr>
-                @foreach ($users as $user)
+                @foreach ($params as $param)
                 <tr>
-                    <td>{{$user->name}}</td>
-                    <td>10:00:00</td>
-                    <td>20:00:00</td>
-                    <td>00:30:00</td>
-                    <td>09:30:00</td>
+                    <td>{{$param->getUserName()}}</td>
+                    <td>{{ \Carbon\Carbon::parse($param->work_start_time)->format('H:i:s') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($param->work_end_time)->format('H:i:s') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($param->getTotalBreakDuration())->format('H:i:s') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($param->getTotalattendanceDuration())->format('H:i:s') }}</td>
                 </tr>
                 @endforeach
             </table>

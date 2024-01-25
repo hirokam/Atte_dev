@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Attendance;
 
 class AuthController extends Controller
 {
@@ -10,5 +11,4 @@ class AuthController extends Controller
     {
         return view('clock_in');
     }
-
 }
