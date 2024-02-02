@@ -35,31 +35,19 @@ class AttendanceController extends Controller
 
     public function index(Request $request)
     {
-        $today = Carbon::today()->addDay();
-        $todayParams = Attendance::whereDate('workday', $today)->paginate(5);
-
-        // if($todayParams->isEmpty()) {
-        //     return view('welcome');
-        // }
-
+        $day = Carbon::today();
+        $todayParams = Attendance::whereDate('workday', $day)->paginate(5);
         $todayParams->each(function ($attendance) {
             $attendance->workday = Carbon::parse($attendance->workday);
         });
-        return view('attendance', compact('todayParams'));
+        return view('attendance', compact('day', 'todayParams'));
     }
 
    public function search(Request $request)
     {
         $selectedDate = $request->input('the_selected_day');
-//        dd($selectedDate);
-        $selectedDate = $selectedDate ? Carbon::parse($selectedDate) : Carbon::today();
-// //        $newDate = $selectedDate->subDay();
-// //        if($request->has('the_previous_day')) {
-// //            $newDate = $selectedDate->subDay();
-//         } elseif ($request->has('the_next_day')) {
-//             $newDate = $selectedDate->addDay();
-//         }
-        $todayParams = Attendance::whereDate('workday', $selectedDate)->paginate(5);
-        return view('attendance', compact('todayParams'));
+        $day = $selectedDate ? Carbon::parse($selectedDate) : Carbon::today();
+        $todayParams = Attendance::whereDate('workday', $day)->paginate(5);
+        return view('attendance', compact('day', 'todayParams'));
     }
 }

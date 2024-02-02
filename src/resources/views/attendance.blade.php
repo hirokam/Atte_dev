@@ -10,7 +10,7 @@
         <nav class="header__nav">
             <ul class="header__nav-inner-items">
                 <li><a href="/" class="header__nav-inner-item">ホーム</a></li>
-                <li><a href="" class="header__nav-inner-item">日付一覧</a></li>
+                <li><a href="/attendance" class="header__nav-inner-item">日付一覧</a></li>
                 <li><a href="/logout" class="header__nav-inner-item">ログアウト</a></li>
             </ul>
         </nav>
@@ -22,13 +22,13 @@
         <div class="content-inner__date">
            <form action="/search" method="post">
             @csrf
-                <input type="hidden" name="the_selected_day" value="{{ optional($todayParams->first())->workday ? Carbon\Carbon::parse($todayParams->first()->workday)->subDay()->toDateString() : '' }}">
+                <input type="hidden" name="the_selected_day" value="{{ $day->copy()->subDay()->toDateString() }}" >
                 <button type="submit" name="the_previous_day" class="select-day__button" ><</button>
             </form>
-            <div class="select-day">{{ $todayParams->isNotEmpty() ? Carbon\Carbon::parse($todayParams->first()->workday)->format('Y-m-d') : '' }}</div>
+            <div class="select-day">{{ $day->format('Y-m-d') }}</div>
             <form action="/search" method="post">
             @csrf
-                <input type="hidden" name="the_selected_day" value="{{ optional($todayParams->first())->workday ? Carbon\Carbon::parse($todayParams->first()->workday)->addDay()->toDateString() : '' }}">
+                <input type="hidden" name="the_selected_day" value="{{ $day->copy()->addDay()->toDateString() }}">
                 <button type="submit" name="the_next_day" class="select-day__button" >></button>
            </form>
         </div>
