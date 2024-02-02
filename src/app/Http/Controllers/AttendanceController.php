@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AttendanceController extends Controller
 {
@@ -34,8 +35,19 @@ class AttendanceController extends Controller
 
     public function index(Request $request)
     {
-        $params = Attendance::all();
-        return view('attendance', compact('params'));
+        $day = Carbon::today();
+        $todayParams = Attendance::whereDate('workday', $day)->paginate(5);
+        $todayParams->each(function ($attendance) {
+            $attendance->workday = Carbon::parse($attendance->workday);
+        });
+        return view('attendance', compact('day', 'todayParams'));
     }
 
+   public function search(Request $request)
+    {
+        $selectedDate = $request->input('the_selected_day');
+        $day = $selectedDate ? Carbon::parse($selectedDate) : Carbon::today();
+        $todayParams = Attendance::whereDate('workday', $day)->paginate(5);
+        return view('attendance', compact('day', 'todayParams'));
+    }
 }
