@@ -21,13 +21,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/attendance', [AttendanceController::class, 'index']);
 });
 
-
-
 Route::post('/', [AttendanceController::class, 'store']);
 Route::patch('/', [AttendanceController::class, 'update']);
 
-Route::get('/search', [AttendanceController::class, 'search']);
-Route::post('/search', [AttendanceController::class, 'search']);
+Route::get('/search/{date?}', [AttendanceController::class, 'search']);
+Route::post('/search/{date?}', [AttendanceController::class, 'search']);
 
 Route::post('/break', [BreaktimeController::class, 'store']);
 Route::patch('/break', [BreaktimeController::class, 'update']);

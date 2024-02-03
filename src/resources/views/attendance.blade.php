@@ -9,9 +9,14 @@
     <div class="header-content__right">
         <nav class="header__nav">
             <ul class="header__nav-inner-items">
+                @if (Auth::check())
                 <li><a href="/" class="header__nav-inner-item">ホーム</a></li>
                 <li><a href="/attendance" class="header__nav-inner-item">日付一覧</a></li>
-                <li><a href="/logout" class="header__nav-inner-item">ログアウト</a></li>
+                <li><form action="/logout" method="post">
+                    @csrf
+                    <button class="header__nav-inner-item">ログアウト</button></form>
+                </li>
+                @endif
             </ul>
         </nav>
     </div>
@@ -20,13 +25,13 @@
 @section('main')
     <div class="content">
         <div class="content-inner__date">
-           <form action="/search" method="post">
+           <form action="/search/{{$day->copy()->subDay()->toDateString()}}" method="post">
             @csrf
                 <input type="hidden" name="the_selected_day" value="{{ $day->copy()->subDay()->toDateString() }}" >
                 <button type="submit" name="the_previous_day" class="select-day__button" ><</button>
             </form>
             <div class="select-day">{{ $day->format('Y-m-d') }}</div>
-            <form action="/search" method="post">
+            <form action="/search/{{$day->copy()->addDay()->toDateString()}}" method="post">
             @csrf
                 <input type="hidden" name="the_selected_day" value="{{ $day->copy()->addDay()->toDateString() }}">
                 <button type="submit" name="the_next_day" class="select-day__button" >></button>
@@ -53,7 +58,7 @@
             </table>
         </div>
         <div class="content-inner__pagination">
-            {{ $todayParams->appends(request()->query())->links('custom.pagination') }}
+            {{ $todayParams->links('custom.pagination') }}
         </div>
     </div>
 @endsection

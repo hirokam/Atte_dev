@@ -43,10 +43,11 @@ class AttendanceController extends Controller
         return view('attendance', compact('day', 'todayParams'));
     }
 
-   public function search(Request $request)
+    public function search(Request $request, $date = null)
     {
-        $selectedDate = $request->input('the_selected_day');
+        $selectedDate = $request->input('the_selected_day') ?? $date;
         $day = $selectedDate ? Carbon::parse($selectedDate) : Carbon::today();
+        session(['selected_day' => $day->toDateString()]);
         $todayParams = Attendance::whereDate('workday', $day)->paginate(5);
         return view('attendance', compact('day', 'todayParams'));
     }
