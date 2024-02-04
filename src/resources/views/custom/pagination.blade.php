@@ -19,7 +19,7 @@
 
     .arrow__left {
         border-radius: 3px 0 0 3px;
-        padding-right: 10px;
+        /* padding-right: 10px; */
     }
 
     .arrow__right {
@@ -31,7 +31,8 @@
     }
 
     .active,
-    .passive {
+    .passive,
+    .three-dots {
         width: 45px;
         height: 45px;
         line-height: 45px;
@@ -49,13 +50,9 @@
         background: white;
     }
 
-    .disabled {
+    .three-dots {
         color: black;
         background: white;
-        width: 45px;
-        height: 45px;
-        line-height: 40px;
-        border: solid 0.5px #d3d3d3;
     }
 
     span,a {
@@ -79,7 +76,7 @@
         @foreach ($elements as $element)
             {{-- "Three Dots" Separator --}}
             @if (is_string($element))
-                <li class="disabled"><span>{{ $element }}</span></li>
+                <li class="disabled three-dots"><span>{{ $element }}</span></li>
             @endif
 
             {{-- Array of Links --}}
