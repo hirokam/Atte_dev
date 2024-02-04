@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/', [AttendanceController::class, 'store']);
-Route::patch('/', [AttendanceController::class, 'update']);
+Route::patch('/', [AttendanceController::class, 'finishWork']);
 
 Route::get('/search/{date?}', [AttendanceController::class, 'search']);
 Route::post('/search/{date?}', [AttendanceController::class, 'search']);
