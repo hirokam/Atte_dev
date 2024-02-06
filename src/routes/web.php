@@ -18,14 +18,17 @@ use App\Http\controllers\BreaktimeController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class, 'home']);
+
+    Route::post('/', [AttendanceController::class, 'startWork']);
+    Route::patch('/', [AttendanceController::class, 'finishWork']);
+
     Route::get('/attendance', [AttendanceController::class, 'index']);
+
+    Route::prefix('search')->group(function() {
+    Route::get('{date?}', [AttendanceController::class, 'search']);
+    Route::post('{date?}', [AttendanceController::class, 'search']);
+    });
+
+    Route::post('/break', [BreaktimeController::class, 'store']);
+    Route::patch('/break', [BreaktimeController::class, 'update']);
 });
-
-Route::post('/', [AttendanceController::class, 'store']);
-Route::patch('/', [AttendanceController::class, 'finishWork']);
-
-Route::get('/search/{date?}', [AttendanceController::class, 'search']);
-Route::post('/search/{date?}', [AttendanceController::class, 'search']);
-
-Route::post('/break', [BreaktimeController::class, 'store']);
-Route::patch('/break', [BreaktimeController::class, 'update']);

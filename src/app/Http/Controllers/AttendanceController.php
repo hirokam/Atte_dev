@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class AttendanceController extends Controller
 {
-    public function store(Request $request)
+    public function startWork(Request $request)
     {
         $user_id = $request->input('user_id');
         $today = Carbon::today();
@@ -27,32 +27,28 @@ class AttendanceController extends Controller
     {
         $user_id = $request->input('user_id');
         $latestAttendance = Attendance::where('user_id', $user_id)->orderBy('id', 'desc')->first();
+        $now = Carbon::now();
+        $today = Carbon::today();
+        $yesterday = Carbon::yesterday();
+        $workStartTime = Carbon::parse($latestAttendance->work_start_time);
 
-        if($latestAttendance) {
-            $now = Carbon::now();
-            $workStartTime = Carbon::parse($latestAttendance->work_start_time);
-        
-            // $latestAttendance->work_end_time = $now;
-            // $latestAttendance->save();
+        if($now->isNextDay($workStartTime)) {
+            $latestAttendance->work_end_time->$yesterday->setTime(23,59,59);
+            $latestAttendance->save();
 
-
-            if($workStartTime->isNextDay($now)) {
-                $latestAttendance->work_end_time = $workStartTime->setTime(23,59,59);
-                $latestAttendance->save();
-
-                $newAttendance = new Attendance();
-                $newAttendance->user_id = $user_id;
-                $newAttendance->workday = $now->toDateString();
-                $newAttendance->work_start_time = $now;
-                $newAttendance->save();
-            }else{
+            $newAttendance = new Attendance();
+            $newAttendance->user_id = $user_id;
+            $newAttendance->workday = $today->toDateString();
+            $newAttendance->work_start_time->$today->setTime(0,0,0);
+            $newAttendance->work_end_time = $now;
+            $newAttendance->save();
+        }else{
+            if($latestAttendance) {
                 $latestAttendance->work_end_time = $now;
                 $latestAttendance->save();
             }
         }
 
-        // Attendance::where('id', $lastInsertId)->update(['work_end_time' => $work_end_time]);
-        
         return redirect('/');
     }
 
@@ -62,6 +58,7 @@ class AttendanceController extends Controller
         $todayParams = Attendance::whereDate('workday', $day)->paginate(5);
         $todayParams->each(function ($attendance) {
             $attendance->workday = Carbon::parse($attendance->workday);
+            $attendance->work_end_time = $attendance->work_end_time ? Carbon::parse($attendance->work_end_time) : null;
         });
         return view('attendance', compact('day', 'todayParams'));
     }
