@@ -30,26 +30,26 @@
                 <form action="/" method="post" class="content__inner-items">
                 @csrf
                     <input hidden type="text" name="user_id" value="{{ Auth::user()->id }}">
-                    <button type="submit" name="work_start_time" class="content__inner-item">勤務開始</button>
+                    <button type="submit" name="work_start_time" @if(in_array('work_start_time', $buttonAttributes)) disabled @endif class="content__inner-item">勤務開始</button>
                 </form>
                 <form action="/" method="post" class="content__inner-items">
                 @method('PATCH')
                 @csrf
                     <input hidden type="text" name="user_id" value="{{ Auth::user()->id }}">
-                    <button type="submit" name="work_end_time" class="content__inner-item">勤務終了</button>
+                    <button type="submit" name="work_end_time" @if(in_array('work_end_time', $buttonAttributes)) disabled @endif class="content__inner-item">勤務終了</button>
                 </form>
             </div>
             <div class="content__inner-items-lower">
                 <form action="/break" method="post" class="content__inner-items">
                 @csrf
                     <input hidden type="text" name="user_id" value="{{ Auth::user()->id }}">
-                    <button type="submit" name="break_start_time" class="content__inner-item">休憩開始</button>
+                    <button type="submit" name="break_start_time" @if(in_array('break_start_time', $buttonAttributes)) disabled @endif class="content__inner-item">休憩開始</button>
                 </form>
                 <form action="/break" method="post" class="content__inner-items">
                 @method('PATCH')
                 @csrf
                     <input hidden type="text" name="user_id" value="{{ Auth::user()->id }}">
-                    <button type="submit" name="break_end_time" class="content__inner-item">休憩終了</button>
+                    <button type="submit" name="break_end_time" @if(in_array('break_end_time', $buttonAttributes)) disabled @endif class="content__inner-item">休憩終了</button>
                 </form>
             </div>
         </div>

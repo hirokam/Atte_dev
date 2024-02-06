@@ -50,9 +50,21 @@
                 <tr>
                     <td>{{$param->getUserName()}}</td>
                     <td>{{ \Carbon\Carbon::parse($param->work_start_time)->format('H:i:s') }}</td>
-                    <td>{{ \Carbon\Carbon::parse($param->work_end_time)->format('H:i:s') }}</td>
+                    @if ($param->work_end_time)
+                        <td>{{ \Carbon\Carbon::parse($param->work_end_time)->format('H:i:s') }}</td>
+                    @else
+                        <td></td>
+                    @endif
+                    @if ($param->work_end_time)
                     <td>{{ \Carbon\Carbon::parse($param->getTotalBreakDuration())->format('H:i:s') }}</td>
+                    @else
+                        <td></td>
+                    @endif
+                    @if ($param->work_end_time)
                     <td>{{ \Carbon\Carbon::parse($param->getTotalAttendanceDuration())->format('H:i:s') }}</td>
+                    @else
+                        <td></td>
+                    @endif
                 </tr>
                 @endforeach
             </table>
