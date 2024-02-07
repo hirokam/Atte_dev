@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Attendance;
 use Carbon\Carbon;
+// use App\Http\Requests\AuthRequest;
 
 class AuthController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
         $user_id = Auth::user()->id;
         $today = Carbon::today()->toDateString();
