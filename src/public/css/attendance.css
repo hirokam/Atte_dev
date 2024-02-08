@@ -24,6 +24,11 @@
     justify-content: center;
 }
 
+.content-inner__data-worker {
+    padding-left: 0;
+    font-size: 15px;
+}
+
 .content-inner__data table {
     width: 1100px;
 }

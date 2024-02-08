@@ -17,9 +17,9 @@ class AuthController extends Controller
         $record = Attendance::where('user_id', $user_id)->orWhere('work_start_time', $today)->orderBy('id', 'desc')->first();
         $workEndTimeExists = optional($record)->work_end_time;
 
-        $attendance_id = $record->id;
-        $attendance = Attendance::find($attendance_id);
-        $breakTimeRecord = $attendance->breaktimes()->orderBy('id', 'desc')->first();
+        // $attendance_id = $record->id;
+        // $attendance = Attendance::find($attendance_id);
+        $breakTimeRecord = $record->breaktimes()->orderBy('id', 'desc')->first();
         $breakTimeStart = optional($breakTimeRecord)->break_start_time;
         $breakTimeEnd = optional($breakTimeRecord)->break_end_time;
         $buttonAttributes = [];

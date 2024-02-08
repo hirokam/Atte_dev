@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendance;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -70,5 +71,16 @@ class AttendanceController extends Controller
         session(['selected_day' => $day->toDateString()]);
         $todayParams = Attendance::whereDate('workday', $day)->paginate(5);
         return view('attendance', compact('day', 'todayParams'));
+    }
+
+    public function workerAttendance(Request $request ,$selectedName)
+    {
+        $day = Carbon::today();
+        $selectedName = $request->input('selected_name');
+        $userParams = User::where('name', $selectedName)->first();
+        $userId = $userParams->id;
+        $todayParams = Attendance::whereDate('workday', $day)->where('user_id', $userId)->paginate(5);
+
+        return view('attendance', compact('day', 'selectedName', 'todayParams'));
     }
 }

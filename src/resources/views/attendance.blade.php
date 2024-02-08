@@ -48,7 +48,12 @@
                 </tr>
                 @foreach ($todayParams as $param)
                 <tr>
-                    <td>{{$param->getUserName()}}</td>
+                    <form action="/worker_attendances/{{$param->getUserName()}}" method="post">
+                    @csrf
+                    <td>
+                        <input type="hidden" name="selected_name" value="{{$param->getUserName()}}">
+                        <button class="content-inner__data-worker" name="worker">{{$param->getUserName()}}</button></td>
+                    </form>
                     <td>{{ \Carbon\Carbon::parse($param->work_start_time)->format('H:i:s') }}</td>
                     @if ($param->work_end_time)
                         <td>{{ \Carbon\Carbon::parse($param->work_end_time)->format('H:i:s') }}</td>

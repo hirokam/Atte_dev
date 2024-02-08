@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::post('{date?}', [AttendanceController::class, 'search']);
     });
 
+    Route::post('/worker_attendances/{selectedName?}', [AttendanceController::class, 'workerAttendance']);
+
     Route::post('/break', [BreaktimeController::class, 'store']);
     Route::patch('/break', [BreaktimeController::class, 'update']);
 });
