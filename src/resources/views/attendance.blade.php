@@ -25,13 +25,13 @@
 @section('main')
     <div class="content">
         <div class="content-inner__date">
-           <form action="/search/{{$day->copy()->subDay()->toDateString()}}" method="post">
+           <form action="/search/{{$day->copy()->subDay()->toDateString()}}" method="post" class="content-inner__date-form">
             @csrf
                 <input type="hidden" name="the_selected_day" value="{{ $day->copy()->subDay()->toDateString() }}" >
                 <button type="submit" name="the_previous_day" class="select-day__button" ><</button>
             </form>
             <div class="select-day">{{ $day->format('Y-m-d') }}</div>
-            <form action="/search/{{$day->copy()->addDay()->toDateString()}}" method="post">
+            <form action="/search/{{$day->copy()->addDay()->toDateString()}}" method="post" class="content-inner__date-form">
             @csrf
                 <input type="hidden" name="the_selected_day" value="{{ $day->copy()->addDay()->toDateString() }}">
                 <button type="submit" name="the_next_day" class="select-day__button" >></button>
@@ -48,7 +48,12 @@
                 </tr>
                 @foreach ($todayParams as $param)
                 <tr>
-                    <td>{{$param->getUserName()}}</td>
+                    <form action="/worker_attendances/{{$param->getUserName()}}" method="post">
+                    @csrf
+                    <td>
+                        <input type="hidden" name="selected_name" value="{{$param->getUserName()}}">
+                        <button class="content-inner__data-worker" name="worker">{{$param->getUserName()}}</button></td>
+                    </form>
                     <td>{{ \Carbon\Carbon::parse($param->work_start_time)->format('H:i:s') }}</td>
                     @if ($param->work_end_time)
                         <td>{{ \Carbon\Carbon::parse($param->work_end_time)->format('H:i:s') }}</td>
@@ -69,8 +74,9 @@
                 @endforeach
             </table>
         </div>
-        <div class="content-inner__pagination">
-            {{ $todayParams->links('custom.pagination') }}
-        </div>
     </div>
+    <div class="content-inner__pagination">
+        {{ $todayParams->links('custom.pagination') }}
+    </div>
+
 @endsection

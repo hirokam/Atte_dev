@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendance;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -25,26 +26,26 @@ class AttendanceController extends Controller
 
     public function finishWork(Request $request)
     {
+        $now = Carbon::now();
         $user_id = $request->input('user_id');
         $latestAttendance = Attendance::where('user_id', $user_id)->orderBy('id', 'desc')->first();
-        $now = Carbon::now();
-        $today = Carbon::today();
-        $yesterday = Carbon::yesterday();
         $workStartTime = Carbon::parse($latestAttendance->work_start_time);
 
         if($now->isNextDay($workStartTime)) {
-            $latestAttendance->work_end_time->$yesterday->setTime(23,59,59);
+            if($latestAttendance->work_end_time === null) {
+            $latestAttendance->work_end_time = Carbon::Yesterday()->hour(23)->minute(59)->seconds(59);
             $latestAttendance->save();
 
             $newAttendance = new Attendance();
             $newAttendance->user_id = $user_id;
-            $newAttendance->workday = $today->toDateString();
-            $newAttendance->work_start_time->$today->setTime(0,0,0);
-            $newAttendance->work_end_time = $now;
+            $newAttendance->workday = Carbon::today()->toDateString();
+            $newAttendance->work_start_time = Carbon::today()->hour(0)->minute(0)->seconds(0);
+            $newAttendance->work_end_time = Carbon::now();
             $newAttendance->save();
+            }
         }else{
             if($latestAttendance) {
-                $latestAttendance->work_end_time = $now;
+                $latestAttendance->work_end_time = Carbon::now();
                 $latestAttendance->save();
             }
         }
@@ -70,5 +71,16 @@ class AttendanceController extends Controller
         session(['selected_day' => $day->toDateString()]);
         $todayParams = Attendance::whereDate('workday', $day)->paginate(5);
         return view('attendance', compact('day', 'todayParams'));
+    }
+
+    public function workerAttendance(Request $request ,$selectedName)
+    {
+        $day = Carbon::today();
+        $selectedName = $request->input('selected_name');
+        $userParams = User::where('name', $selectedName)->first();
+        $userId = $userParams->id;
+        $todayParams = Attendance::whereDate('workday', $day)->where('user_id', $userId)->paginate(5);
+
+        return view('attendance', compact('day', 'selectedName', 'todayParams'));
     }
 }

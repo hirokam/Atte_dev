@@ -2,8 +2,12 @@
     .pagination {
         list-style-type: none;
         display: flex;
-        justify-content: center;
         padding: 0;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+
     }
 
     .arrow__left,
@@ -15,11 +19,11 @@
         color: #1e90ff;
         background: white;
         border: solid 0.5px #d3d3d3;
+        padding-left: 13px;
     }
 
     .arrow__left {
         border-radius: 3px 0 0 3px;
-        /* padding-right: 10px; */
     }
 
     .arrow__right {
@@ -38,6 +42,7 @@
         line-height: 45px;
         font-size: 14px;
         border: solid 0.5px #d3d3d3;
+        padding-left: 13px;
     }
 
     .active {
