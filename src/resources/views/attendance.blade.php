@@ -25,13 +25,13 @@
 @section('main')
     <div class="content">
         <div class="content-inner__date">
-           <form action="/search/{{$day->copy()->subDay()->toDateString()}}" method="post">
+           <form action="/search/{{$day->copy()->subDay()->toDateString()}}" method="post" class="content-inner__date-form">
             @csrf
                 <input type="hidden" name="the_selected_day" value="{{ $day->copy()->subDay()->toDateString() }}" >
                 <button type="submit" name="the_previous_day" class="select-day__button" ><</button>
             </form>
             <div class="select-day">{{ $day->format('Y-m-d') }}</div>
-            <form action="/search/{{$day->copy()->addDay()->toDateString()}}" method="post">
+            <form action="/search/{{$day->copy()->addDay()->toDateString()}}" method="post" class="content-inner__date-form">
             @csrf
                 <input type="hidden" name="the_selected_day" value="{{ $day->copy()->addDay()->toDateString() }}">
                 <button type="submit" name="the_next_day" class="select-day__button" >></button>
@@ -74,8 +74,9 @@
                 @endforeach
             </table>
         </div>
-        <div class="content-inner__pagination">
-            {{ $todayParams->links('custom.pagination') }}
-        </div>
     </div>
+    <div class="content-inner__pagination">
+        {{ $todayParams->links('custom.pagination') }}
+    </div>
+
 @endsection
