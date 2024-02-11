@@ -13,7 +13,15 @@ class AttendanceController extends Controller
     public function startWork(Request $request)
     {
         $user_id = $request->input('user_id');
+        // $year = 2024;
+        // $month = 2;
+        // $day = 8;
+        // $today = Carbon::createMidnightDate($year, $month, $day);
         $today = Carbon::today();
+        // $hour = 11;
+        // $minute = 30;
+        // $second = 0;
+        // $work_start_time = Carbon::create($year, $month, $day, $hour, $minute,$second);
         $work_start_time = Carbon::now();
         $created = Attendance::create([
             'user_id' => $user_id,
@@ -27,29 +35,52 @@ class AttendanceController extends Controller
     public function finishWork(Request $request)
     {
         $now = Carbon::now();
+        $today = Carbon::today();
         $user_id = $request->input('user_id');
         $latestAttendance = Attendance::where('user_id', $user_id)->orderBy('id', 'desc')->first();
-        $workStartTime = Carbon::parse($latestAttendance->work_start_time);
 
-        if($now->isNextDay($workStartTime)) {
-            if($latestAttendance->work_end_time === null) {
-            $latestAttendance->work_end_time = Carbon::Yesterday()->hour(23)->minute(59)->seconds(59);
-            $latestAttendance->save();
+        if($latestAttendance) {
+            $workStartTime = Carbon::parse($latestAttendance->work_start_time);
 
-            $newAttendance = new Attendance();
-            $newAttendance->user_id = $user_id;
-            $newAttendance->workday = Carbon::today()->toDateString();
-            $newAttendance->work_start_time = Carbon::today()->hour(0)->minute(0)->seconds(0);
-            $newAttendance->work_end_time = Carbon::now();
-            $newAttendance->save();
-            }
-        }else{
-            if($latestAttendance) {
-                $latestAttendance->work_end_time = Carbon::now();
+            if($now->isNextDay($workStartTime)) {
+                $latestAttendance->work_end_time = $workStartTime->copy()->hour(23)->minute(59)->second(59);
+                $latestAttendance->save();
+
+                $newAttendance = new Attendance();
+                $newAttendance->user_id = $user_id;
+                $newAttendance->workday = $workStartTime->copy()->addDay()->toDateString();
+                $newAttendance->work_start_time = $workStartTime->copy()->addDay()->hour(0)->minute(0)->second(0);
+                $newAttendance->work_end_time = $now;
+                $newAttendance->save();
+
+            }elseif ($now->isNextDay($workStartTime->copy()->addDays(1))) {
+                $latestAttendance->work_end_time = $workStartTime->copy()->hour(23)->minute(59)->second(59);
+                $latestAttendance->save();
+
+                $nextDay = $workStartTime->copy()->addDay();
+                
+                while ($nextDay->isBefore($now)) {
+                    $newAttendance = new Attendance();
+                    $newAttendance->user_id = $user_id;
+                    $newAttendance->workday = $nextDay->copy()->toDateString();
+                    $newAttendance->work_start_time = $nextDay->copy()->hour(0)->minute(0)->second(0);
+                    $newAttendance->work_end_time = $nextDay->copy()->hour(23)->minute(59)->second(59);
+                    $newAttendance->save();
+
+                    $nextDay->addDay();
+                }
+                $newAttendance = new Attendance();
+                $newAttendance->user_id = $user_id;
+                $newAttendance->workday = $today->copy()->toDateString();
+                $newAttendance->work_start_time = $today->copy()->hour(0)->minute(0)->second(0);
+                $newAttendance->work_end_time = $now;
+                $newAttendance->save();
+
+            }else {
+                $latestAttendance->work_end_time = $now;
                 $latestAttendance->save();
             }
         }
-
         return redirect('/');
     }
 
