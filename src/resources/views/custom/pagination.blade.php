@@ -42,7 +42,7 @@
         line-height: 45px;
         font-size: 14px;
         border: solid 0.5px #d3d3d3;
-        padding-left: 13px;
+        text-align: center;
     }
 
     .active {
