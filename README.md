@@ -19,7 +19,7 @@
 
 
 ## 使用技術（実行環境）
-・言語:PHP　ver7.4.9、フレームワーク:Laravel ver8.83.27
+<img src="https://img.shields.io/badge/-Php-777BB4.svg?logo=php&style=plastic"> <img src="https://img.shields.io/badge/-Laravel-E74430.svg?logo=laravel&style=plastic"> <img src="https://img.shields.io/badge/-Nginx-269539.svg?logo=nginx&style=plastic"> <img src="https://img.shields.io/badge/-Apache-D22128.svg?logo=apache&style=plastic"> <img src="https://img.shields.io/badge/-Bootstrap-563D7C.svg?logo=bootstrap&style=plastic"> <img src="https://img.shields.io/badge/-Jquery-0769AD.svg?logo=jquery&style=plastic">
 
 ##　テーブル設計
 
