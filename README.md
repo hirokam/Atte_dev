@@ -50,6 +50,10 @@ githubクローンURL : git@github.com:hirokam/Atte_dev.git
 
 dockerコンテナの生成と起動 : docker-compose up -d --build
 
+PHPコンテナのコマンド操作 : docker-compose exec php bash
+
+キー生成 : php artisan key:generate
+
 
 ### 環境変数
 MYSQL_ROOT_PASSWORD : root
