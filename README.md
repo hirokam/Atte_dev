@@ -42,12 +42,14 @@ nginx : 1.21.1
 
 MySQL : 8.0.26
 
+
 ### コマンド
 githubクローンURL : git@github.com:hirokam/Atte_dev.git
 
 リポジトリの紐付け先変更 : git remote set-url origin 作成したリポジトリのurl
 
 dockerコンテナの生成と起動 : docker-compose up -d --build
+
 
 ### 環境変数
 MYSQL_ROOT_PASSWORD : root
@@ -58,4 +60,46 @@ MYSQL_USER : laravel_user
 
 MYSQL_PASSWORD : laravel_pass
 
+
 ##　その他
+### テストアカウント
+1.鈴木一郎
+
+メールアドレス : i.suzuki@example.com
+
+パスワード : 12345678
+
+
+2.鈴木花子
+
+メールアドレス : h.suzuki@example.com
+
+パスワード : 12345678
+
+
+3.鈴木二郎
+
+メールアドレス : j.suzuki@example.com
+
+パスワード : 12345678
+
+
+4.鈴木三郎
+
+メールアドレス : s.suzuki@example.com
+
+パスワード : 12345678
+
+
+5.鈴木四郎
+
+メールアドレス : si.suzuki@example.com
+
+パスワード : 12345678
+
+
+6.鈴木五郎
+
+メールアドレス : g.suzuki@example.com
+
+パスワード : 12345678
