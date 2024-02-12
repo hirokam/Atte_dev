@@ -104,14 +104,14 @@ class AttendanceController extends Controller
         return view('attendance', compact('day', 'todayParams'));
     }
 
-    public function workerAttendance(Request $request ,$selectedName)
-    {
-        $day = Carbon::today();
-        $selectedName = $request->input('selected_name');
-        $userParams = User::where('name', $selectedName)->first();
-        $userId = $userParams->id;
-        $todayParams = Attendance::whereDate('workday', $day)->where('user_id', $userId)->paginate(5);
+    // public function workerAttendance(Request $request ,$selectedName)
+    // {
+    //     $day = Carbon::today();
+    //     $selectedName = $request->input('selected_name');
+    //     $userParams = User::where('name', $selectedName)->first();
+    //     $userId = $userParams->id;
+    //     $todayParams = Attendance::whereDate('workday', $day)->where('user_id', $userId)->paginate(5);
 
-        return view('attendance', compact('day', 'selectedName', 'todayParams'));
-    }
+    //     return view('attendance', compact('day', 'selectedName', 'todayParams'));
+    // }
 }
