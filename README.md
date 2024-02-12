@@ -32,7 +32,7 @@
 
 
 ## 環境構築
-言語・フレームワーク：バージョン
+### 言語・フレームワーク：バージョン
 
 PHP:7.4.9
 
@@ -41,5 +41,10 @@ Laravel:8.83.27
 nginx:1.21.1
 
 MySQL:8.0.26
+
+### コマンド
+githubクローンURL:git@github.com:hirokam/Atte_dev.git
+
+dockerコンテナの生成と起動:docker-compose up -d --build
 
 ##　その他
