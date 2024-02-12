@@ -12,13 +12,13 @@
 
 
 ## 機能一覧
-・会員登録、ログイン、ログアウト（Laravelの認証機能を利用）
+・ 会員登録、ログイン、ログアウト（Laravelの認証機能を利用）
 
-・勤務開始、勤務終了（勤務終了時に日を跨いでいたら2日分の勤務として記録）
+・ 勤務開始、勤務終了（勤務終了時に日を跨いでいたら2日分の勤務として記録）
 
-・休憩開始、休憩終了（1日に何度でも休憩可能）
+・ 休憩開始、休憩終了（1日に何度でも休憩可能）
 
-・日付別勤怠情報取得、ページネーション（5件ずつ取得）
+・ 日付別勤怠情報取得、ページネーション（5件ずつ取得）
 
 
 ## 使用技術（実行環境）
@@ -34,17 +34,28 @@
 ## 環境構築
 ### 言語・フレームワーク：バージョン
 
-PHP:7.4.9
+PHP : 7.4.9
 
-Laravel:8.83.27
+Laravel : 8.83.27
 
-nginx:1.21.1
+nginx : 1.21.1
 
-MySQL:8.0.26
+MySQL : 8.0.26
 
 ### コマンド
-githubクローンURL:git@github.com:hirokam/Atte_dev.git
+githubクローンURL : git@github.com:hirokam/Atte_dev.git
 
-dockerコンテナの生成と起動:docker-compose up -d --build
+リポジトリの紐付け先変更 : git remote set-url origin 作成したリポジトリのurl
+
+dockerコンテナの生成と起動 : docker-compose up -d --build
+
+### 環境変数
+MYSQL_ROOT_PASSWORD : root
+
+MYSQL_DATABASE : laravel_db
+
+MYSQL_USER : laravel_user
+
+MYSQL_PASSWORD : laravel_pass
 
 ##　その他
