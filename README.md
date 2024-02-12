@@ -65,7 +65,7 @@ MYSQL_USER : laravel_user
 MYSQL_PASSWORD : laravel_pass
 
 
-##　その他
+## その他
 ### テストアカウント
 1.鈴木一郎
 
