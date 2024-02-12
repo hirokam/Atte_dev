@@ -25,7 +25,7 @@
 <img src="https://img.shields.io/badge/-Php-777BB4.svg?logo=php&style=plastic"> <img src="https://img.shields.io/badge/-Laravel-E74430.svg?logo=laravel&style=plastic"> <img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&style=plastic"> <img src="https://img.shields.io/badge/-Nginx-269539.svg?logo=nginx&style=plastic"> <img src="https://img.shields.io/badge/-Apache-D22128.svg?logo=apache&style=plastic"> <img src="https://img.shields.io/badge/-Bootstrap-563D7C.svg?logo=bootstrap&style=plastic"> <img src="https://img.shields.io/badge/-Jquery-0769AD.svg?logo=jquery&style=plastic">
 
 ## テーブル設計
-![テーブル設計](テーブル設計.png)
+![テーブル設計](テーブル設計.png)
 
 ## ER図
 ![ER図](ER.png)
